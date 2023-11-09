@@ -28,4 +28,6 @@ def pytest_configure(config):
         management.call_command("collectstatic", verbosity=0, interactive=False)
 
 
+h
+
 # endregion
