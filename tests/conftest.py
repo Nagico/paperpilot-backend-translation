@@ -31,10 +31,20 @@ def pytest_configure(config):
 
 @pytest.fixture
 def mock_translation_api(mocker):
-    mocker.patch(
-        "server.business.translation.TranslationApi.translate",
-        return_value="测试文本",
-    )
+    def _mock_translation_api(*args, **kwargs):
+        mock_response_content = {
+            "from": "en",
+            "to": "zh",
+            "trans_result": [{"dst": "试验内容", "src": "test-content"}],
+        }
+        mock_response = mocker.Mock()
+        mock_response.json.return_value = mock_response_content
+        mock_post = mocker.patch(
+            "aiohttp.ClientSession.post", return_value=mock_response
+        )
+        return mock_post
+
+    return _mock_translation_api
 
 
 # endregion
