@@ -19,4 +19,5 @@ class TestTranslationPublic:
             ),
             context,
         )
+
         assert response.result == "试验内容"

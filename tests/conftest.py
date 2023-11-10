@@ -42,11 +42,13 @@ def mock_translation_api(mocker):
                 }
             ],
         }
+
         mock_response = mocker.Mock()
         mock_response.json.return_value = mock_response_content
         mock_post = mocker.patch(
             "aiohttp.ClientSession.post", return_value=mock_response
         )
+
         return mock_post
 
     return _mock_translation_api
