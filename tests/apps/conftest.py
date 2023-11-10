@@ -100,13 +100,13 @@ def wrong_user_id(mocker):
     return user_id
 
 
-@pytest_asyncio.fixture(scope="function", autouse=True)
-async def clear_db(db):
-    yield
-    from translation.models import Paper
-
-    await Paper.objects.all().adelete()
-    assert await Paper.objects.all().acount() == 0
+# @pytest_asyncio.fixture(scope="function", autouse=True)
+# async def clear_db(db):
+#     yield
+#     from translation.models import Paper
+#
+#     await Paper.objects.all().adelete()
+#     assert await Paper.objects.all().acount() == 0
 
 
 @pytest.fixture

@@ -35,7 +35,12 @@ def mock_translation_api(mocker):
         mock_response_content = {
             "from": "en",
             "to": "zh",
-            "trans_result": [{"dst": "试验内容", "src": "test-content"}],
+            "trans_result": [
+                {
+                    "src": "test-content",
+                    "dst": "试验内容",
+                }
+            ],
         }
         mock_response = mocker.Mock()
         mock_response.json.return_value = mock_response_content
