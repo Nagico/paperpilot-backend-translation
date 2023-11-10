@@ -1,6 +1,7 @@
 import os
 
 import django
+import pytest
 from django.core import management
 
 
@@ -28,6 +29,12 @@ def pytest_configure(config):
         management.call_command("collectstatic", verbosity=0, interactive=False)
 
 
-h
+@pytest.fixture
+def mock_translation_api(mocker):
+    mocker.patch(
+        "server.business.translation.TranslationApi.translate",
+        return_value="测试文本",
+    )
+
 
 # endregion
